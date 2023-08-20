@@ -1,0 +1,32 @@
+package com.successStory.main.Service.Impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.successStory.main.Dto.BannerDtoToEntity;
+import com.successStory.main.Entities.Banner;
+import com.successStory.main.Payloads.BannerDto;
+import com.successStory.main.Repositories.BannerRepo;
+import com.successStory.main.Service.BannerService;
+
+@Service
+public class BannerServiceImpl implements BannerService {
+
+	@Autowired
+	private BannerRepo bannerRepo;
+	@Autowired
+	private BannerDtoToEntity bannerDtoToEntity;
+	
+	@Override
+	public BannerDto addBanner(BannerDto bannerDto) {
+		List<Banner> banners = this.bannerRepo.findAll();
+		
+		return bannerDtoToEntity.bannerToDto(banners.get(0));
+	}
+}
+
+
+
+

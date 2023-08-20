@@ -1,0 +1,29 @@
+package com.successStory.main.Payloads;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class BannerDto {
+	
+	private String banner_heading;
+	private String banner_text;
+	private String button_text;
+	private String button_url;
+	private boolean status;
+	
+	public BannerDto() {
+		
+	}
+
+	public BannerDto(String banner_heading, String banner_text, String button_text, String button_url, boolean status) {
+		super();
+		this.banner_heading = banner_heading;
+		this.banner_text = banner_text;
+		this.button_text = button_text;
+		this.button_url = button_url;
+		this.status = status;
+	}
+	
+}

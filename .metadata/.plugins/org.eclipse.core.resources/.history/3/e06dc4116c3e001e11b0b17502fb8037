@@ -1,0 +1,15 @@
+package com.successStory.main.Service;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.successStory.main.Payloads.BannerDto;
+
+@Service
+public interface BannerService {
+	
+	List<BannerDto> getAllCourses();
+	 BannerDto addBanner(BannerDto bannerDto);
+	//public List<Banner> deleteBanner();
+}

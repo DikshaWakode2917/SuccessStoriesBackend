@@ -1,0 +1,5 @@
+package com.successStory.main.Payloads;
+
+public class BannerDto {
+
+}
