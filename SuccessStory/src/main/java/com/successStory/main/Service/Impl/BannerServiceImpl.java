@@ -22,10 +22,22 @@ public class BannerServiceImpl implements BannerService {
 	
 	@Override
 	public BannerDto addBanner(BannerDto bannerDto) {
-		Banner banner = bannerDtoToEntity.dtoToBanner(bannerDto);
-		banner = this.bannerRepo.save(banner);
+		Banner newBanner = bannerDtoToEntity.dtoToBanner(bannerDto);
+		List<Banner> banners = this.bannerRepo.findAll();
+		if (banners.size() == 0) {
+			newBanner = this.bannerRepo.save(newBanner);
+		} else {
+			banners.get(0).setBanner_heading(newBanner.getBanner_heading());
+			banners.get(0).setBanner_text(newBanner.getBanner_text());
+			banners.get(0).setButton_text(newBanner.getButton_text());
+			banners.get(0).setButton_url(newBanner.getButton_url());
+			banners.get(0).setStatus(newBanner.isStatus());
+			
+			newBanner = this.bannerRepo.save(banners.get(0));
+		}
 		
-		return this.bannerDtoToEntity.bannerToDto(banner);
+		
+		return this.bannerDtoToEntity.bannerToDto(newBanner);
 	}
 	
 	@Override
