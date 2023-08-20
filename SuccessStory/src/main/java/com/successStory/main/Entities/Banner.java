@@ -19,7 +19,7 @@ public class Banner {
 	private boolean status;
 	
 	public Banner() {
-		
+		super();
 	}
 
 	public Banner(int banner_id, String banner_heading, String banner_text, String button_text, String button_url,
