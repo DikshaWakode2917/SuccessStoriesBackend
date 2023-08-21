@@ -1,11 +1,14 @@
 package com.successStory.main.Entities;
 
+import org.springframework.data.relational.core.mapping.Table;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
+@Table("banner_table")
 public class Banner {
 	
 	@Id
