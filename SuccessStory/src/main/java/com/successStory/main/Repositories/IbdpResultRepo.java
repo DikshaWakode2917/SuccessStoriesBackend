@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.successStory.main.Entities.IbdpResult;
 
-@Repository
+@Repository("ibdpResultRepo")
 public interface IbdpResultRepo extends JpaRepository <IbdpResult, Integer> {
 
 }
