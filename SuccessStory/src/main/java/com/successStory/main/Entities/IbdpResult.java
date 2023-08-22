@@ -1,7 +1,5 @@
 package com.successStory.main.Entities;
-import org.apache.commons.math3.fraction.Fraction;
 import org.springframework.data.relational.core.mapping.Table;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
