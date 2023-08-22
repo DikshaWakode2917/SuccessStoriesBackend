@@ -1,16 +1,21 @@
 package com.successStory.main.Dto;
 
-import org.springframework.stereotype.Component;
-
 import com.successStory.main.Entities.IbdpResult;
 import com.successStory.main.Payloads.IbdpResultDto;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+import com.successStory.main.Dto.IbdpResultDtoToEntity;
+import com.successStory.main.Repositories.IbdpResultRepo;
+import com.successStory.main.Service.IbdpResultService;
+
 
 @Component
 public class IbdpResultDtoToEntity {
 	
 	public IbdpResult dtoToIbdpResult(IbdpResultDto ibdpResultDto) {
 		IbdpResult ibdpResult = new IbdpResult();
-		IbdpResultFractionDto fraction = new IbdpResultFractionDto();
 
 		ibdpResult.setStudent_Name(ibdpResultDto.getStudent_Name());
 		ibdpResult.setSchool_Name(ibdpResultDto.getSchool_Name());

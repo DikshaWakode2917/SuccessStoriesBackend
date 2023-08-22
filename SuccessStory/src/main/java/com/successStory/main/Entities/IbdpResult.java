@@ -1,7 +1,7 @@
 package com.successStory.main.Entities;
+import org.apache.commons.math3.fraction.Fraction;
 import org.springframework.data.relational.core.mapping.Table;
 
-import com.successStory.main.Dto.IbdpResultFractionDto;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -9,21 +9,21 @@ import jakarta.persistence.Id;
 
 
 @Entity
-@Table
+@Table("Ibdp_Result")
 public class IbdpResult {
 	
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
-	private int id;
+	private int Student_id;
 	private String Student_Name;
 	private String School_Name;
 	private int Year;
 	private String Level;
     //@Type(type = "fraction")
-	private IbdpResultFractionDto Score;
+	private String Score;
     //@Type(type = "fraction", value = null)
 
-	private IbdpResultFractionDto IA_Score;
+	private String IA_Score;
 	private boolean Status;
 	
 	public IbdpResult() {
@@ -31,10 +31,10 @@ public class IbdpResult {
 		// TODO Auto-generated constructor stub
 	}
 
-	public IbdpResult(int id, String student_Name, String school_Name, int year, String level, IbdpResultFractionDto score,
-			IbdpResultFractionDto iA_Score, boolean status) {
+	public IbdpResult(int student_id, String student_Name, String school_Name, int year, String level, String score,
+			String iA_Score, boolean status) {
 		super();
-		id = id;
+		Student_id = student_id;
 		Student_Name = student_Name;
 		School_Name = school_Name;
 		Year = year;
@@ -44,12 +44,12 @@ public class IbdpResult {
 		Status = status;
 	}
 
-	public int getId() {
-		return id;
+	public int getStudent_id() {
+		return Student_id;
 	}
 
-	public void setId(int id) {
-		id = id;
+	public void setStudent_id(int student_id) {
+		Student_id = student_id;
 	}
 
 	public String getStudent_Name() {
@@ -84,19 +84,19 @@ public class IbdpResult {
 		Level = level;
 	}
 
-	public IbdpResultFractionDto getScore() {
+	public String getScore() {
 		return Score;
 	}
 
-	public void setScore(IbdpResultFractionDto score) {
+	public void setScore(String score) {
 		Score = score;
 	}
 
-	public IbdpResultFractionDto getIA_Score() {
+	public String getIA_Score() {
 		return IA_Score;
 	}
 
-	public void setIA_Score(IbdpResultFractionDto iA_Score) {
+	public void setIA_Score(String iA_Score) {
 		IA_Score = iA_Score;
 	}
 
@@ -108,6 +108,5 @@ public class IbdpResult {
 		Status = status;
 	}
 
-	
-	
+		
 }
