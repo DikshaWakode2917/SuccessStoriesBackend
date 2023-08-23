@@ -33,25 +33,43 @@ public class IbdpResultServiceImpl implements IbdpResultService {
         return ibdpResultDto;
     }
 
+
+    @Override
+   public List<IbdpResultDto> getAllIbdpResults() {
+        List<IbdpResult> ibdpResults = this.ibdpResultRepo.findAll();
+        List<IbdpResultDto> ibdpResultDto = ibdpResults.stream()
+                .map(ibdpResult -> this.ibdpResultDtoToEntity.ibpdResultToDto(ibdpResult))
+                .collect(Collectors.toList());
+        return ibdpResultDto;
+    }
+    
+
 //    @Override
-//    public IbdpResultDto getSingleIbdpResult(IbdpResultDto ibdpResultDto, String student_Name) {
+//    public IbdpResultDto getSingleIbdpResult(String student_Name) {
 //        IbdpResult ibdpResult = this.ibdpResultRepo.findByStudentName(student_Name);
-//
-//        if (ibdpResult == null) {
-//            throw new ResourceNotFoundException("IbdpResult", "Student_Name", student_Name);
+//        
+//        if (ibdpResult != null) {
+//            IbdpResultDto ibdpResultDto = this.ibdpResultDtoToEntity.ibpdResultToDto(ibdpResult);
+//            return ibdpResultDto;
+//        } else {
+//            // Handle the case when no result is found, for example, return null
+//            return null;
 //        }
-//
-//        return this.ibdpResultDtoToEntity.ibpdResultToDto(ibdpResult);
 //    }
+
+//        List<IbdpResult> ibdpResults = this.ibdpResultRepo.findByStudent_Name(student_Name);
 //
-//    @Override
-//    public List<IbdpResultDto> getAllIbdpResults() {
-//        List<IbdpResult> ibdpResults = this.ibdpResultRepo.findAll();
-//        List<IbdpResultDto> ibdpResultDto = ibdpResults.stream()
-//                .map(ibdpResult -> this.ibdpResultDtoToEntity.ibpdResultToDto(ibdpResult))
-//                .collect(Collectors.toList());
-//        return ibdpResultDto;
-//    }
+//        // Check if ibdpResults is not empty
+//        if (!ibdpResults.isEmpty()) {
+//            // Return the first result as an IbdpResultDto
+//            return this.ibdpResultDtoToEntity.ibpdResultToDto(ibdpResults.get(0));
+//        } else {
+//            // Return null or handle the case when no result is found
+//            return null; // You may want to handle this differently based on your use case.
+//        }
+   // }
+
+
 //
 //    @Override
 //    public IbdpResultDto updateIbdpResult(IbdpResultDto ibdpResultDto, String student_name) {
@@ -75,27 +93,35 @@ public class IbdpResultServiceImpl implements IbdpResultService {
 //    }
 //
 //    @Override
-//    public IbdpResultDto deleteIbdpResult(IbdpResultDto ibdpResultDto, String student_Name) {
-//        IbdpResult ibdpResult = this.ibdpResultRepo.findByStudentName(student_Name);
+//    public boolean deleteIbdpResult(String student_Name) {
+//        // Find the IbdpResult by student_Name
+//        IbdpResult ibdpResult = this.ibdpResultRepo.findByStudent_Name(student_Name);
 //
 //        if (ibdpResult == null) {
+//            // If no result is found, throw an exception or return false, depending on your preference
 //            throw new ResourceNotFoundException("IbdpResult", "Student_name", student_Name);
+//            // Alternatively, you can return false here and handle it differently
+//            // return false;
 //        }
-//
-//        IbdpResultDto deletedDto = this.ibdpResultDtoToEntity.ibpdResultToDto(ibdpResult);
+
+        // Delete the found IbdpResult
 //        this.ibdpResultRepo.delete(ibdpResult);
-//        return deletedDto;
-//    }
 //
-//    @Override
-//    public boolean deleteAllIbdpResult() {
-//        List<IbdpResult> ibdpResultsToDelete = this.ibdpResultRepo.findAll();
-//
-//        if (ibdpResultsToDelete.isEmpty()) {
-//            return false;
-//        }
-//
-//        this.ibdpResultRepo.deleteAll(ibdpResultsToDelete);
+//        // Return true to indicate successful deletion
 //        return true;
 //    }
+
+
+    @Override
+    public boolean deleteAllIbdpResult() {
+        List<IbdpResult> ibdpResultsToDelete = this.ibdpResultRepo.findAll();
+
+        if (ibdpResultsToDelete.isEmpty()) {
+            return false;
+        }
+
+        this.ibdpResultRepo.deleteAll(ibdpResultsToDelete);
+        return true;
+    }
+
 }

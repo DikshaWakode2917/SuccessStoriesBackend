@@ -14,6 +14,10 @@ import com.successStory.main.Service.IbdpResultService;
 @Component
 public class IbdpResultDtoToEntity {
 	
+	public @interface ibpdResultToDto {
+
+	}
+
 	public IbdpResult dtoToIbdpResult(IbdpResultDto ibdpResultDto) {
 		IbdpResult ibdpResult = new IbdpResult();
 

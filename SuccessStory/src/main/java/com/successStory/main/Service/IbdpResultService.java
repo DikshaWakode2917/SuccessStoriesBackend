@@ -9,12 +9,13 @@ import com.successStory.main.Payloads.IbdpResultDto;
 @Service
 public interface IbdpResultService {
 
-	//List<IbdpResultDto> getAllIbdpResults();
-	//IbdpResultDto getSingleIbdpResult(IbdpResultDto ibdpResultDto,String student_Name);
 	IbdpResultDto addIbdpResult(IbdpResultDto ibdpResultDto);
+	List<IbdpResultDto> getAllIbdpResults();
+    //IbdpResultDto getSingleIbdpResult(String student_Name);
 	//IbdpResultDto updateIbdpResult(IbdpResultDto ibdpResultDto, String student_Name);
-	//IbdpResultDto deleteIbdpResult(IbdpResultDto ibdpResultDto,String student_Name);
-	//boolean deleteAllIbdpResult();
+	//boolean deleteIbdpResult(IbdpResultDto ibdpResultDto,String student_Name);
+	boolean deleteAllIbdpResult();
+	//void deleteAllIbdpResult();
 }
 
 //Object getById(String student_name);

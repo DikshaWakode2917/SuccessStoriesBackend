@@ -1,6 +1,6 @@
 package com.successStory.main.Repositories;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -12,8 +12,11 @@ import com.successStory.main.Entities.IbdpResult;
 @Repository("ibdpResultRepo")
 public interface IbdpResultRepo extends JpaRepository <IbdpResult, Integer> {
 
-	//Object getStudent_id(String student_name);
+	//IbdpResult findByStudentName(IbdpResultDto ibdpResultDto, String student_Name);
+	
 
+	//Object getStudent_id(String student_name);
+//
 //	@Query("SELECT r.studentName FROM IbdpResult r WHERE r.studentName = :studentName1")
 //	IbdpResult findByStudentName(@Param("studentName1") String studentName1);
 
