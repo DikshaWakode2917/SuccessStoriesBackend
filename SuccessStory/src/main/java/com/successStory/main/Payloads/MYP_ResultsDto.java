@@ -1,6 +1,5 @@
 package com.successStory.main.Payloads;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -22,4 +21,7 @@ public class MYP_ResultsDto {
 	private String Score1;
 	boolean Status;
 	
+	public MYP_ResultsDto() {
+		super();
 	}
+}

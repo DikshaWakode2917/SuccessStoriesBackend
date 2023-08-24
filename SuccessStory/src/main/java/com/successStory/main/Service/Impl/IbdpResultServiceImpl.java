@@ -6,9 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.courses.backend.exceptions.ResourceNotFoundException;
 import com.successStory.main.Dto.IbdpResultDtoToEntity;
-import com.successStory.main.Dto.IbdpResultDtoToEntity.ibpdResultToDto;
 import com.successStory.main.Entities.IbdpResult;
 import com.successStory.main.Payloads.IbdpResultDto;
 import com.successStory.main.Repositories.IbdpResultRepo;

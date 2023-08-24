@@ -24,5 +24,7 @@ public class MYP_Results {
 	private String Score1;
 	boolean Status;
 	
-		
+	public MYP_Results() {
+		super();
+	}
 }

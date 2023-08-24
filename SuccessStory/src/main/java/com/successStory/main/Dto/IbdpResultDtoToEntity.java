@@ -2,21 +2,13 @@ package com.successStory.main.Dto;
 
 import com.successStory.main.Entities.IbdpResult;
 import com.successStory.main.Payloads.IbdpResultDto;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-
 import com.successStory.main.Dto.IbdpResultDtoToEntity;
-import com.successStory.main.Repositories.IbdpResultRepo;
-import com.successStory.main.Service.IbdpResultService;
 
 
 @Component
 public class IbdpResultDtoToEntity {
 	
-	public @interface ibpdResultToDto {
-
-	}
 
 	public IbdpResult dtoToIbdpResult(IbdpResultDto ibdpResultDto) {
 		IbdpResult ibdpResult = new IbdpResult();
