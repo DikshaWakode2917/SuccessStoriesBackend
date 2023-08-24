@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.courses.backend.exceptions.ResourceNotFoundException;
 import com.successStory.main.Dto.IbdpResultDtoToEntity;
+import com.successStory.main.Dto.IbdpResultDtoToEntity.ibpdResultToDto;
 import com.successStory.main.Entities.IbdpResult;
 import com.successStory.main.Payloads.IbdpResultDto;
 import com.successStory.main.Repositories.IbdpResultRepo;
@@ -45,8 +46,8 @@ public class IbdpResultServiceImpl implements IbdpResultService {
     
 
 //    @Override
-//    public IbdpResultDto getSingleIbdpResult(String student_Name) {
-//        IbdpResult ibdpResult = this.ibdpResultRepo.findByStudentName(student_Name);
+//    public IbdpResultDto getSingleIbdpResult(IbpdResultToDto ibpdResultToDto,String student_Name) {
+//        IbdpResult ibdpResult = this.ibdpResultRepo.findByStudentName(ibpdResultToDto, student_Name)
 //        
 //        if (ibdpResult != null) {
 //            IbdpResultDto ibdpResultDto = this.ibdpResultDtoToEntity.ibpdResultToDto(ibdpResult);

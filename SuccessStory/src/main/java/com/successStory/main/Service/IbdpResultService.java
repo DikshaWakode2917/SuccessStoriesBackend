@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 import com.successStory.main.Payloads.IbdpResultDto;
 
-@Service
 public interface IbdpResultService {
 
 	IbdpResultDto addIbdpResult(IbdpResultDto ibdpResultDto);
