@@ -10,7 +10,7 @@ public interface MYP_ResultsService {
 	List<MYP_ResultsDto> getAllMYP_Results();
 //	MYP_ResultsDto getSingleMYP_Result(MYP_ResultsDto myp_resultsDto, String student_Name);
 //	MYP_ResultsDto updateMYP_Results(MYP_ResultsDto myp_resultsDto, String student_Name);
-	boolean deleteAllMYP_Results();
+    boolean deleteAllMYP_Results();
 //	MYP_ResultsDto deleteSingleMYP_Result(MYP_ResultsDto myp_resultsDto, String student_Name);
 	
 }

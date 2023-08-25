@@ -13,7 +13,7 @@ public class IbdpResult {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private int Student_id;
-	private String Student_Name;
+	private String StudentName;
 	private String School_Name;
 	private int Year;
 	private String Level;
@@ -29,11 +29,11 @@ public class IbdpResult {
 		// TODO Auto-generated constructor stub
 	}
 
-	public IbdpResult(int student_id, String student_Name, String school_Name, int year, String level, String score,
+	public IbdpResult(int student_id, String studentName, String school_Name, int year, String level, String score,
 			String iA_Score, boolean status) {
 		super();
 		Student_id = student_id;
-		Student_Name = student_Name;
+		StudentName = studentName;
 		School_Name = school_Name;
 		Year = year;
 		Level = level;
@@ -50,12 +50,12 @@ public class IbdpResult {
 		Student_id = student_id;
 	}
 
-	public String getStudent_Name() {
-		return Student_Name;
+	public String getStudentName() {
+		return StudentName;
 	}
 
-	public void setStudent_Name(String student_Name) {
-		Student_Name = student_Name;
+	public void setStudentName(String studentName) {
+		StudentName = studentName;
 	}
 
 	public String getSchool_Name() {
@@ -106,5 +106,6 @@ public class IbdpResult {
 		Status = status;
 	}
 
+	
 		
 }

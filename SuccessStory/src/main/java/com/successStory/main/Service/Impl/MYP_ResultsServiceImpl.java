@@ -1,8 +1,6 @@
 package com.successStory.main.Service.Impl;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.successStory.main.Dto.MYP_ResultsDtoToEntity;
 import com.successStory.main.Entities.MYP_Results;
-import com.successStory.main.Payloads.IbdpResultDto;
 import com.successStory.main.Payloads.MYP_ResultsDto;
 import com.successStory.main.Repositories.MYP_ResultsRepo;
-import com.successStory.main.Service.IbdpResultService;
 import com.successStory.main.Service.MYP_ResultsService;
 
 @Service

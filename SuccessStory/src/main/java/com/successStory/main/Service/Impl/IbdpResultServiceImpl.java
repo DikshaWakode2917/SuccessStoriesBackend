@@ -43,18 +43,18 @@ public class IbdpResultServiceImpl implements IbdpResultService {
     }
     
 
-//    @Override
-//    public IbdpResultDto getSingleIbdpResult(IbpdResultToDto ibpdResultToDto,String student_Name) {
-//        IbdpResult ibdpResult = this.ibdpResultRepo.findByStudentName(ibpdResultToDto, student_Name)
-//        
-//        if (ibdpResult != null) {
-//            IbdpResultDto ibdpResultDto = this.ibdpResultDtoToEntity.ibpdResultToDto(ibdpResult);
-//            return ibdpResultDto;
-//        } else {
-//            // Handle the case when no result is found, for example, return null
-//            return null;
-//        }
-//    }
+    @Override
+    public IbdpResultDto findByStudentName(String studentName) {
+        IbdpResult ibdpResult = this.ibdpResultRepo.findByStudentName(studentName);
+        
+        if (ibdpResult != null) {
+            IbdpResultDto ibdpResultDto = this.ibdpResultDtoToEntity.ibpdResultToDto(ibdpResult);
+            return ibdpResultDto;
+        } else {
+            // Handle the case when no result is found, for example, return null
+            return null;
+        }
+    }
 
 //        List<IbdpResult> ibdpResults = this.ibdpResultRepo.findByStudent_Name(student_Name);
 //

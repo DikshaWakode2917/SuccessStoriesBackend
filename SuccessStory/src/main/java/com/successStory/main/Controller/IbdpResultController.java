@@ -18,7 +18,7 @@ import com.successStory.main.Service.IbdpResultService;
 public class IbdpResultController {
 
     @Autowired
-    IbdpResultService ibdpResultService;
+    private IbdpResultService ibdpResultService;
 
     @PostMapping
     public ResponseEntity<IbdpResultDto> addIbdpResult(@RequestBody IbdpResultDto ibdpResultDto) {
@@ -31,16 +31,16 @@ public class IbdpResultController {
     	return ResponseEntity.ok(this.ibdpResultService.getAllIbdpResults());
     }
     
-//    @GetMapping("/{student_Name}")
-//    public ResponseEntity<IbdpResultDto> getSingleIbdpResult(@PathVariable String student_Name) {
-//        IbdpResultDto ibdpResultDto = this.ibdpResultService.getSingleIbdpResult(student_Name);
-//        
-//        if (ibdpResultDto != null) {
-//            return ResponseEntity.ok(ibdpResultDto);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
+    @GetMapping("/{student_Name}")
+    public ResponseEntity<IbdpResultDto> findByStudentName(@PathVariable String student_Name) {
+        IbdpResultDto ibdpResultDto = this.ibdpResultService.findByStudentName(student_Name);
+        
+        if (ibdpResultDto != null) {
+            return ResponseEntity.ok(ibdpResultDto);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
     
     

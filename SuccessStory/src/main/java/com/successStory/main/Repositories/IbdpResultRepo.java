@@ -8,7 +8,11 @@ import com.successStory.main.Entities.IbdpResult;
 @Repository("ibdpResultRepo")
 public interface IbdpResultRepo extends JpaRepository <IbdpResult, Integer> {
 
-	//IbdpResult findByStudentName(IbdpResultDto ibdpResultDto, String student_Name);
+	//IbdpResult findByStudent_Name(String Student_Name);
+	
+	IbdpResult findByStudentName(String studentName);
+
+	
 	
 
 	//Object getStudent_id(String student_name);

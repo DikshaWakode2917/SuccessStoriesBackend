@@ -13,7 +13,7 @@ public class IbdpResultDtoToEntity {
 	public IbdpResult dtoToIbdpResult(IbdpResultDto ibdpResultDto) {
 		IbdpResult ibdpResult = new IbdpResult();
 
-		ibdpResult.setStudent_Name(ibdpResultDto.getStudent_Name());
+		ibdpResult.setStudentName(ibdpResultDto.getStudentName());
 		ibdpResult.setSchool_Name(ibdpResultDto.getSchool_Name());
 		ibdpResult.setYear(ibdpResultDto.getYear());
 		ibdpResult.setLevel(ibdpResultDto.getLevel());
@@ -25,7 +25,7 @@ public class IbdpResultDtoToEntity {
 	
 	public IbdpResultDto ibpdResultToDto (IbdpResult ibdpResult) {
 		IbdpResultDto ibdpResultDto = new IbdpResultDto();
-		ibdpResultDto.setStudent_Name(ibdpResult.getStudent_Name());
+		ibdpResultDto.setStudentName(ibdpResult.getStudentName());
 		ibdpResultDto.setSchool_Name(ibdpResult.getSchool_Name());
 		ibdpResultDto.setYear(ibdpResult.getYear());
 		ibdpResultDto.setLevel(ibdpResult.getLevel());
