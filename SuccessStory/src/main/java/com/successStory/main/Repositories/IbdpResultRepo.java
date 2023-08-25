@@ -12,8 +12,8 @@ public interface IbdpResultRepo extends JpaRepository <IbdpResult, Integer> {
 	
 
 	//Object getStudent_id(String student_name);
-//
-//	@Query("SELECT r.studentName FROM IbdpResult r WHERE r.studentName = :studentName1")
-//	IbdpResult findByStudentName(@Param("studentName1") String studentName1);
+
+	//	@Query("SELECT r.studentName FROM IbdpResult r WHERE r.studentName = :studentName1")
+	//	IbdpResult findByStudentName(@Param("studentName1") String studentName1);
 
 }

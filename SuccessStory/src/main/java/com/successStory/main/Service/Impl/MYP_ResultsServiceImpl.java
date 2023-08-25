@@ -47,12 +47,17 @@ public class MYP_ResultsServiceImpl implements MYP_ResultsService{
 			    .collect(Collectors.toList());
 		return myp_resultsDto;
 	}
-//
-//	@Override
-//	public boolean deleteAllIbdpResult() {
-//		// TODO Auto-generated method stub
-//		return false;
-//	}
+
+	@Override
+	public boolean deleteAllMYP_Results() {
+
+		List<MYP_Results> myp_resultToDelete = this.myp_resultsRepo.findAll();
+		if(myp_resultToDelete.isEmpty()) {
+			return false;
+		}
+		else this.myp_resultsRepo.deleteAll(myp_resultToDelete);
+		return true;
+	}
 
 	
 
