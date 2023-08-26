@@ -86,7 +86,6 @@ INDEX VERSION 1.134+E:\Education_Planet\SUCCESS_STORIES\Success_Story\.metadata\
 2640570543.index
 2124121766.index
 3603230755.index
-593656688.index
 3801172683.index
 2571105636.index
 3092990144.index
