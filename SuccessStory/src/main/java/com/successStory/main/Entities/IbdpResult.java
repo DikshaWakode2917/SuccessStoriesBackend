@@ -1,11 +1,16 @@
 package com.successStory.main.Entities;
 import org.springframework.data.relational.core.mapping.Table;
+
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.Getter;
+import lombok.Setter;
 
-
+@Getter
+@Setter
 @Entity
 @Table("Ibdp_Result")
 public class IbdpResult {
@@ -13,7 +18,9 @@ public class IbdpResult {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Id
 	private int Student_id;
-	private String StudentName;
+	
+	@Column(name = "studentName")
+    private String studentName;
 	private String School_Name;
 	private int Year;
 	private String Level;
@@ -33,7 +40,7 @@ public class IbdpResult {
 			String iA_Score, boolean status) {
 		super();
 		Student_id = student_id;
-		StudentName = studentName;
+		this.studentName = studentName;
 		School_Name = school_Name;
 		Year = year;
 		Level = level;
@@ -41,71 +48,5 @@ public class IbdpResult {
 		IA_Score = iA_Score;
 		Status = status;
 	}
-
-	public int getStudent_id() {
-		return Student_id;
-	}
-
-	public void setStudent_id(int student_id) {
-		Student_id = student_id;
-	}
-
-	public String getStudentName() {
-		return StudentName;
-	}
-
-	public void setStudentName(String studentName) {
-		StudentName = studentName;
-	}
-
-	public String getSchool_Name() {
-		return School_Name;
-	}
-
-	public void setSchool_Name(String school_Name) {
-		School_Name = school_Name;
-	}
-
-	public int getYear() {
-		return Year;
-	}
-
-	public void setYear(int year) {
-		Year = year;
-	}
-
-	public String getLevel() {
-		return Level;
-	}
-
-	public void setLevel(String level) {
-		Level = level;
-	}
-
-	public String getScore() {
-		return Score;
-	}
-
-	public void setScore(String score) {
-		Score = score;
-	}
-
-	public String getIA_Score() {
-		return IA_Score;
-	}
-
-	public void setIA_Score(String iA_Score) {
-		IA_Score = iA_Score;
-	}
-
-	public boolean isStatus() {
-		return Status;
-	}
-
-	public void setStatus(boolean status) {
-		Status = status;
-	}
-
-	
 		
 }

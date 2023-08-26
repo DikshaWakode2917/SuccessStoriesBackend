@@ -42,19 +42,28 @@ public class IbdpResultServiceImpl implements IbdpResultService {
         return ibdpResultDto;
     }
     
-
     @Override
-    public IbdpResultDto findByStudentName(String studentName) {
-        IbdpResult ibdpResult = this.ibdpResultRepo.findByStudentName(studentName);
-        
-        if (ibdpResult != null) {
-            IbdpResultDto ibdpResultDto = this.ibdpResultDtoToEntity.ibpdResultToDto(ibdpResult);
-            return ibdpResultDto;
-        } else {
-            // Handle the case when no result is found, for example, return null
-            return null;
-        }
+    public List<IbdpResultDto> findByStudentName(String studentName) {
+    	List<IbdpResult> ibdpResults = this.ibdpResultRepo.findByStudentName(studentName);
+    	List<IbdpResultDto> ibdpResultDto = ibdpResults.stream()
+                .map(ibdpResult -> this.ibdpResultDtoToEntity.ibpdResultToDto(ibdpResult))
+                .collect(Collectors.toList());
+    	return ibdpResultDto;
     }
+    
+//
+//    @Override
+//    public IbdpResultDto findByStudentName(String studentName) {
+//        IbdpResult ibdpResult = this.ibdpResultRepo.findByStudentName(studentName);
+//        
+//        if (ibdpResult != null) {
+//            IbdpResultDto ibdpResultDto = this.ibdpResultDtoToEntity.ibpdResultToDto(ibdpResult);
+//            return ibdpResultDto;
+//        } else {
+//            // Handle the case when no result is found, for example, return null
+//            return null;
+//        }
+//    }
 
 //        List<IbdpResult> ibdpResults = this.ibdpResultRepo.findByStudent_Name(student_Name);
 //

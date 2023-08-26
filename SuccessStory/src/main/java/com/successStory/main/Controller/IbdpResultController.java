@@ -1,8 +1,9 @@
 package com.successStory.main.Controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,20 +32,48 @@ public class IbdpResultController {
     	return ResponseEntity.ok(this.ibdpResultService.getAllIbdpResults());
     }
     
-    @GetMapping("/{student_Name}")
-    public ResponseEntity<IbdpResultDto> findByStudentName(@PathVariable String student_Name) {
-        IbdpResultDto ibdpResultDto = this.ibdpResultService.findByStudentName(student_Name);
-        
-        if (ibdpResultDto != null) {
-            return ResponseEntity.ok(ibdpResultDto);
-        } else {
-            return ResponseEntity.notFound().build();
+//    @GetMapping("/{student_Name}")
+//    public ResponseEntity<IbdpResultDto> findByStudentName(@PathVariable String studentName) {
+//        List<IbdpResultDto> ibdpResultDto = this.ibdpResultService.findByStudentName(studentName);
+//        
+//        if (ibdpResultDto != null) {
+//            return ResponseEntity.ok(List<ibdpResultDto>);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
+//    
+//    @GetMapping("/{studentName}")
+//    public ResponseEntity<List<IbdpResultDto>> findByStudentName(@PathVariable String studentName) {
+//        List<IbdpResultDto> ibdpResultDtoList = this.ibdpResultService.findByStudentName(studentName);
+//        
+//        if (ibdpResultDtoList != null && !ibdpResultDtoList.isEmpty()) {
+//            return ResponseEntity.ok(ibdpResultDtoList);
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
+
+    @GetMapping("/{studentName}")
+    public ResponseEntity<?> findByStudentName(@PathVariable String studentName) {
+        try {
+            String decodedStudentName = URLDecoder.decode(studentName, StandardCharsets.UTF_8.toString());
+            
+            // Now, you can use the decodedStudentName in your logic to retrieve results.
+            List<IbdpResultDto> ibdpResultDtoList = this.ibdpResultService.findByStudentName(decodedStudentName);
+            
+            if (ibdpResultDtoList != null && !ibdpResultDtoList.isEmpty()) {
+                return ResponseEntity.ok(ibdpResultDtoList);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (UnsupportedEncodingException e) {
+            // Handle the exception (e.g., log an error, return an error response)
+            //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error decoding URL parameter");
+        	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error decoding URL parameter");
         }
     }
-
-    
-    
-
+   
 
 //    @PutMapping("/{student_Name}")
 //    public ResponseEntity<IbdpResultDto> updateIbdpResult(@RequestBody IbdpResultDto ibdpResultDto, @PathVariable("student_Name") String student_Name) {
