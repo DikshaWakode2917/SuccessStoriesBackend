@@ -4,6 +4,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,27 +34,6 @@ public class IbdpResultController {
     	return ResponseEntity.ok(this.ibdpResultService.getAllIbdpResults());
     }
     
-//    @GetMapping("/{student_Name}")
-//    public ResponseEntity<IbdpResultDto> findByStudentName(@PathVariable String studentName) {
-//        List<IbdpResultDto> ibdpResultDto = this.ibdpResultService.findByStudentName(studentName);
-//        
-//        if (ibdpResultDto != null) {
-//            return ResponseEntity.ok(List<ibdpResultDto>);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
-//    
-//    @GetMapping("/{studentName}")
-//    public ResponseEntity<List<IbdpResultDto>> findByStudentName(@PathVariable String studentName) {
-//        List<IbdpResultDto> ibdpResultDtoList = this.ibdpResultService.findByStudentName(studentName);
-//        
-//        if (ibdpResultDtoList != null && !ibdpResultDtoList.isEmpty()) {
-//            return ResponseEntity.ok(ibdpResultDtoList);
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
-//    }
 
     @GetMapping("/{studentName}")
     public ResponseEntity<?> findByStudentName(@PathVariable String studentName) {
@@ -82,18 +63,17 @@ public class IbdpResultController {
 //    }
 //    
 
-   
-//    @DeleteMapping("/{student_Name}")
-//    public ResponseEntity<IbdpResultDto> deleteIbdpResult(@PathVariable IbdpResultDto ibdpResultDto, String student_Name) {
-//    	boolean success = this.ibdpResultService.deleteIbdpResult(ibdpResultDto, student_Name);
-//		if(success) {
-//			return new ResponseEntity(Map.of("message","IbdpResult Deleted Successfully"),HttpStatus.OK);   //Use when not create ApiResponse class
-//		}
-//		else {
-//			return new ResponseEntity(Map.of("message","IbdpResult not Available"),HttpStatus.NOT_FOUND);  
-//		}
-//
-//    }
+    @DeleteMapping("/{studentName}")
+    public ResponseEntity<?> deleteIbdpResult(@PathVariable String studentName) {
+        boolean success = this.ibdpResultService.deleteSingleIbdpResult(studentName);
+        
+        if (success) {
+            return ResponseEntity.ok(Map.of("message", "IbdpResult Deleted Successfully"));
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Map.of("message", "IbdpResult not Available"));
+        }
+    }
+
     
     @DeleteMapping()
     public List<IbdpResultDto> deleteAllIbdpResult() {
@@ -101,5 +81,23 @@ public class IbdpResultController {
         this.ibdpResultService.deleteAllIbdpResult();
         return deletedIbdpResults;
     }
+    
+    @PutMapping("/{studentName}")
+    public ResponseEntity<IbdpResultDto> updateIbdpResult(
+            @PathVariable String studentName,
+            @RequestBody IbdpResultDto ibdpResultDto) {
+
+        // Call the service to update the IbdpResult
+        IbdpResultDto updatedIbdpResult = ibdpResultService.updateIbdpResult(ibdpResultDto, studentName);
+
+        // Check if the update was successful
+        if (updatedIbdpResult != null) {
+            return ResponseEntity.ok(updatedIbdpResult);
+        } else {
+            // Return an error response if the update failed
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 }

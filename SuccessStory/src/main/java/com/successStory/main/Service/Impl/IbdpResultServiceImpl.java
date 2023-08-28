@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.courses.backend.exceptions.ResourceNotFoundException;
 import com.successStory.main.Dto.IbdpResultDtoToEntity;
 import com.successStory.main.Entities.IbdpResult;
 import com.successStory.main.Payloads.IbdpResultDto;
@@ -50,44 +51,48 @@ public class IbdpResultServiceImpl implements IbdpResultService {
                 .collect(Collectors.toList());
     	return ibdpResultDto;
     }
+
+    @Override
+    public boolean deleteAllIbdpResult(){
+    	List<IbdpResult> deleteIbdpResults = this.ibdpResultRepo.findAll();
+    	if (deleteIbdpResults.isEmpty()) {
+    		return false;
+    	}
+    	else this.ibdpResultRepo.deleteAll(deleteIbdpResults);
+    	return true;
+    }
+
+
+    @Override
+    public boolean deleteSingleIbdpResult(String studentName) {
+        // Retrieve the list of IbdpResult entities with the given studentName
+        List<IbdpResult> ibdpResultsToDelete = this.ibdpResultRepo.findByStudentName(studentName);
+
+        // Check if any matching entities were found
+        if (!ibdpResultsToDelete.isEmpty()) {
+            // Assuming you want to delete the first matching entity, you can do:
+            IbdpResult ibdpResultToDelete = this.ibdpResultRepo.deleteByStudentName(studentName);
+
+            // Delete the entity
+
+            // Return true to indicate that a matching entity was deleted
+            return true;
+        } else {
+            // Return false to indicate that no matching entity was found and deleted
+            return false;
+        }
+    }
+
     
-//
+
 //    @Override
-//    public IbdpResultDto findByStudentName(String studentName) {
-//        IbdpResult ibdpResult = this.ibdpResultRepo.findByStudentName(studentName);
-//        
-//        if (ibdpResult != null) {
-//            IbdpResultDto ibdpResultDto = this.ibdpResultDtoToEntity.ibpdResultToDto(ibdpResult);
-//            return ibdpResultDto;
-//        } else {
-//            // Handle the case when no result is found, for example, return null
-//            return null;
-//        }
-//    }
-
-//        List<IbdpResult> ibdpResults = this.ibdpResultRepo.findByStudent_Name(student_Name);
-//
-//        // Check if ibdpResults is not empty
-//        if (!ibdpResults.isEmpty()) {
-//            // Return the first result as an IbdpResultDto
-//            return this.ibdpResultDtoToEntity.ibpdResultToDto(ibdpResults.get(0));
-//        } else {
-//            // Return null or handle the case when no result is found
-//            return null; // You may want to handle this differently based on your use case.
-//        }
-   // }
-
-
-//
-//    @Override
-//    public IbdpResultDto updateIbdpResult(IbdpResultDto ibdpResultDto, String student_name) {
-//        IbdpResult ibdpResult = this.ibdpResultRepo.findByStudentName(student_name);
-//
+//    public IbdpResultDto updateIbdpResult(IbdpResultDto ibdpResultDto, String studentName) {
+//        List<IbdpResult> ibdpResult = this.ibdpResultRepo.findByStudentName(studentName);
 //        if (ibdpResult == null) {
-//            throw new ResourceNotFoundException("IbdpResult", "Student_name", student_name);
-//        }
+//            throw new ResourceNotFoundException("IbdpResult", "Student_name", studentName);
+//       }
 //
-//        ibdpResult.setStudent_Name(ibdpResultDto.getStudent_Name());
+//        ibdpResult.setStudentName(ibdpResultDto.getStudentName());
 //        ibdpResult.setSchool_Name(ibdpResultDto.getSchool_Name());
 //        ibdpResult.setYear(ibdpResultDto.getYear());
 //        ibdpResult.setLevel(ibdpResultDto.getLevel());
@@ -99,37 +104,65 @@ public class IbdpResultServiceImpl implements IbdpResultService {
 //        IbdpResultDto ibdpResultDto1 = this.ibdpResultDtoToEntity.ibpdResultToDto(updatedIbdpResult);
 //        return ibdpResultDto1;
 //    }
-//
+    
+    
+  
 //    @Override
-//    public boolean deleteIbdpResult(String student_Name) {
-//        // Find the IbdpResult by student_Name
-//        IbdpResult ibdpResult = this.ibdpResultRepo.findByStudent_Name(student_Name);
+//    public IbdpResultDto updateIbdpResult(IbdpResultDto ibdpResultDto, String studentName) {
+//        // Find the IbdpResult entity by studentName
+//        List<IbdpResult> ibdpResults = this.ibdpResultRepo.findByStudentName(studentName);
 //
-//        if (ibdpResult == null) {
-//            // If no result is found, throw an exception or return false, depending on your preference
-//            throw new ResourceNotFoundException("IbdpResult", "Student_name", student_Name);
-//            // Alternatively, you can return false here and handle it differently
-//            // return false;
+//        // Check if any matching entities were found
+//        if (ibdpResults.isEmpty()) {
+//            throw new ResourceNotFoundException("IbdpResult", "studentName", studentName);
 //        }
-
-        // Delete the found IbdpResult
-//        this.ibdpResultRepo.delete(ibdpResult);
 //
-//        // Return true to indicate successful deletion
-//        return true;
+//        // Assuming you want to update the first matching entity, you can do:
+//        IbdpResult ibdpResultToUpdate = (IbdpResult) this.ibdpResultRepo.findByStudentName(studentName);
+//
+//        // Update the entity with values from the DTO
+//        ibdpResultToUpdate.setStudentName(ibdpResultDto.getStudentName());
+//        ibdpResultToUpdate.setSchool_Name(ibdpResultDto.getSchool_Name());
+//        ibdpResultToUpdate.setYear(ibdpResultDto.getYear());
+//        ibdpResultToUpdate.setLevel(ibdpResultDto.getLevel());
+//        ibdpResultToUpdate.setScore(ibdpResultDto.getScore());
+//        ibdpResultToUpdate.setIA_Score(ibdpResultDto.getIA_Score());
+//        ibdpResultToUpdate.setStatus(ibdpResultDto.isStatus());
+//
+//        // Save the updated entity
+//        IbdpResult updatedIbdpResult = this.ibdpResultRepo.save(ibdpResultToUpdate);
+//
+//        // Convert the updated entity back to DTO and return it
+//        return this.ibdpResultDtoToEntity.ibpdResultToDto(updatedIbdpResult);
 //    }
 
-
+   
     @Override
-    public boolean deleteAllIbdpResult() {
-        List<IbdpResult> ibdpResultsToDelete = this.ibdpResultRepo.findAll();
+    public IbdpResultDto updateIbdpResult(IbdpResultDto ibdpResultDto, String studentName) {
+        // Find the IbdpResult entities by studentName
+        List<IbdpResult> ibdpResults = this.ibdpResultRepo.findByStudentName(studentName);
 
-        if (ibdpResultsToDelete.isEmpty()) {
-            return false;
+        // Check if any matching entities were found
+        if (ibdpResults.isEmpty()) {
+            throw new ResourceNotFoundException("IbdpResult", "studentName", studentName);
         }
 
-        this.ibdpResultRepo.deleteAll(ibdpResultsToDelete);
-        return true;
+        // Iterate through the list of matching entities and update each one
+        for (IbdpResult ibdpResultToUpdate : ibdpResults) {
+            ibdpResultToUpdate.setStudentName(ibdpResultDto.getStudentName());
+            ibdpResultToUpdate.setSchool_Name(ibdpResultDto.getSchool_Name());
+            ibdpResultToUpdate.setYear(ibdpResultDto.getYear());
+            ibdpResultToUpdate.setLevel(ibdpResultDto.getLevel());
+            ibdpResultToUpdate.setScore(ibdpResultDto.getScore());
+            ibdpResultToUpdate.setIA_Score(ibdpResultDto.getIA_Score());
+            ibdpResultToUpdate.setStatus(ibdpResultDto.isStatus());
+
+            // Save the updated entity
+            this.ibdpResultRepo.save(ibdpResultToUpdate);
+        }
+
+        // Assuming you want to return the updated DTO of the first entity
+        return this.ibdpResultDtoToEntity.ibpdResultToDto(ibdpResults.get(0));
     }
 
 }

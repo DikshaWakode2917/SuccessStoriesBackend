@@ -12,7 +12,7 @@ public class IbdpResultDtoToEntity {
 
 	public IbdpResult dtoToIbdpResult(IbdpResultDto ibdpResultDto) {
 		IbdpResult ibdpResult = new IbdpResult();
-
+		
 		ibdpResult.setStudentName(ibdpResultDto.getStudentName());
 		ibdpResult.setSchool_Name(ibdpResultDto.getSchool_Name());
 		ibdpResult.setYear(ibdpResultDto.getYear());

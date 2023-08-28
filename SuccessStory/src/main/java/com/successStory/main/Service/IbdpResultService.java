@@ -11,10 +11,8 @@ public interface IbdpResultService {
 	IbdpResultDto addIbdpResult(IbdpResultDto ibdpResultDto);
 	List<IbdpResultDto> getAllIbdpResults();
 	List<IbdpResultDto> findByStudentName(String studentName);
-	//IbdpResultDto updateIbdpResult(IbdpResultDto ibdpResultDto, String student_Name);
-	//boolean deleteIbdpResult(IbdpResultDto ibdpResultDto,String student_Name);
+	IbdpResultDto updateIbdpResult(IbdpResultDto ibdpResultDto, String studentName);
+	boolean deleteSingleIbdpResult(String studentName);
 	boolean deleteAllIbdpResult();
-	//void deleteAllIbdpResult();
 }
 
-//Object getById(String student_name);
