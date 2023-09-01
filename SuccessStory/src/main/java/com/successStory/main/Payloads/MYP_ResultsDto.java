@@ -14,7 +14,7 @@ public class MYP_ResultsDto {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String Student_Name;
+	private String studentName;
 	private String School_Name;
 	private int Year;
 	private String Levels;

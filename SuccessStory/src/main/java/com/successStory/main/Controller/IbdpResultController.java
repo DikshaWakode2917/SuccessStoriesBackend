@@ -98,6 +98,4 @@ public class IbdpResultController {
             return ResponseEntity.notFound().build();
         }
     }
-
-
 }

@@ -14,7 +14,6 @@ public class IbdpResultDto {
 	private boolean Status;
 	public IbdpResultDto() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public IbdpResultDto(String studentName, String school_Name, int year, String level, String score, String iA_Score,
 			boolean status) {

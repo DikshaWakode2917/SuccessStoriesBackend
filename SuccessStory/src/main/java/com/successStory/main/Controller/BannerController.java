@@ -1,3 +1,4 @@
+
 package com.successStory.main.Controller;
 
 import java.util.List;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.successStory.main.Entities.Banner;
 import com.successStory.main.Payloads.BannerDto;
 import com.successStory.main.Service.BannerService;
 
@@ -41,5 +41,4 @@ public class BannerController {
 	    BannerDto bannerDto = bannerService.deleteBanner(); // Replace with your service method
 	    return bannerDto;
 	}
-	
 }

@@ -8,9 +8,8 @@ public interface MYP_ResultsService {
 
 	MYP_ResultsDto addMYP_Result(MYP_ResultsDto myp_resultsDto);
 	List<MYP_ResultsDto> getAllMYP_Results();
-//	MYP_ResultsDto getSingleMYP_Result(MYP_ResultsDto myp_resultsDto, String student_Name);
-//	MYP_ResultsDto updateMYP_Results(MYP_ResultsDto myp_resultsDto, String student_Name);
+	List<MYP_ResultsDto> findByStudentName(String studentName);
+	List<MYP_ResultsDto> updateMYP_Results(MYP_ResultsDto myp_resultsDto, String studentName);
     boolean deleteAllMYP_Results();
-//	MYP_ResultsDto deleteSingleMYP_Result(MYP_ResultsDto myp_resultsDto, String student_Name);
-	
+	boolean deleteSingleMYP_Result(String studentName);	
 }

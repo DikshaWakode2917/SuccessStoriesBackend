@@ -161,8 +161,7 @@ public class IbdpResultServiceImpl implements IbdpResultService {
             this.ibdpResultRepo.save(ibdpResultToUpdate);
         }
 
-        // Assuming you want to return the updated DTO of the first entity
-        return this.ibdpResultDtoToEntity.ibpdResultToDto(ibdpResults.get(0));
+        return this.ibdpResultDtoToEntity.ibpdResultToDto((IbdpResult) ibdpResults);
     }
 
 }

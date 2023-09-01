@@ -1,0 +1,17 @@
+package com.successStory.main.Repositories;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import com.successStory.main.Entities.IbdpResult;
+import com.successStory.main.Entities.MYP_Results;
+import com.successStory.main.Payloads.MYP_ResultsDto;
+
+@Repository
+public interface MYP_ResultsRepo extends  JpaRepository <MYP_Results, Integer> {
+
+    List<MYP_Results> findByStudentName(String studentName);
+
+}

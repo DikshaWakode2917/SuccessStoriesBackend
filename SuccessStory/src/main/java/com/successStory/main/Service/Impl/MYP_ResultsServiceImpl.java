@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.courses.backend.exceptions.ResourceNotFoundException;
 import com.successStory.main.Dto.MYP_ResultsDtoToEntity;
 import com.successStory.main.Entities.MYP_Results;
 import com.successStory.main.Payloads.MYP_ResultsDto;
@@ -43,6 +44,15 @@ public class MYP_ResultsServiceImpl implements MYP_ResultsService{
 			    .collect(Collectors.toList());
 		return myp_resultsDto;
 	}
+	
+
+	@Override
+	public 	List<MYP_ResultsDto> findByStudentName(String studentName) {
+		List<MYP_Results> myp_results = this.myp_resultsRepo.findByStudentName(studentName);
+		List<MYP_ResultsDto> myp_resultsDto = myp_results.stream().map(myp_result -> this.myp_resultsDtoToEntity.myp_resultsToDto(myp_result)).collect(Collectors.toList());
+		return myp_resultsDto;
+		
+	}		
 
 	@Override
 	public boolean deleteAllMYP_Results() {
@@ -55,7 +65,38 @@ public class MYP_ResultsServiceImpl implements MYP_ResultsService{
 		return true;
 	}
 
+	@Override
+	public boolean deleteSingleMYP_Result (String studentName) {
+		List<MYP_Results> myp_resultToDelete = this.myp_resultsRepo.findByStudentName(studentName);
+		
+		if (!myp_resultToDelete.isEmpty()) {
+		  this.myp_resultsRepo.deleteByStudentName(studentName);
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 	
-
+	@Override
+	public 	List<MYP_ResultsDto> updateMYP_Results(MYP_ResultsDto myp_resultsDto, String studentName) {
+		
+		List<MYP_Results> myp_results = this.myp_resultsRepo.findByStudentName(studentName);
+		
+		if (myp_results.isEmpty()) {
+			throw new ResourceNotFoundException("MYP_Results","student_Name",studentName);
+		}
+		for(MYP_Results myp_resultsToUpdate : myp_results) {
+			myp_resultsToUpdate.setStudentName(myp_resultsDto.getStudentName());
+			myp_resultsToUpdate.setSchool_Name(myp_resultsDto.getSchool_Name());
+			myp_resultsToUpdate.setYear(myp_resultsDto.getYear());
+			myp_resultsToUpdate.setLevels(myp_resultsDto.getLevels());
+			myp_resultsToUpdate.setScore1(myp_resultsDto.getScore1());
+			myp_resultsToUpdate.setStatus(myp_resultsDto.isStatus());
 			
+			this.myp_resultsRepo.save(myp_resultsToUpdate);
+		}
+		
+		return (List<MYP_ResultsDto>) this.myp_resultsDtoToEntity.myp_resultsToDto((MYP_Results) myp_results);
+	}
 }

@@ -12,7 +12,7 @@ public class MYP_ResultsDtoToEntity {
 		
 		MYP_Results myp_results = new MYP_Results();
 		
-		myp_results.setStudent_Name(myp_resultsDto.getStudent_Name());
+		myp_results.setStudentName(myp_resultsDto.getStudentName());
 		myp_results.setSchool_Name(myp_resultsDto.getSchool_Name());
 		myp_results.setYear(myp_resultsDto.getYear());
 		myp_results.setLevels(myp_resultsDto.getLevels());
@@ -26,7 +26,7 @@ public class MYP_ResultsDtoToEntity {
 		
 		MYP_ResultsDto myp_resultsDto = new MYP_ResultsDto();
 		
-		myp_resultsDto.setStudent_Name(myp_results.getStudent_Name());
+		myp_resultsDto.setStudentName(myp_results.getStudentName());
 		myp_resultsDto.setSchool_Name(myp_results.getSchool_Name());
 		myp_resultsDto.setYear(myp_results.getYear());
 		myp_resultsDto.setYear(myp_results.getYear());
