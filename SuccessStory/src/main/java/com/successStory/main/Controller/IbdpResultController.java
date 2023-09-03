@@ -74,12 +74,10 @@ public class IbdpResultController {
         }
     }
 
-    
     @DeleteMapping()
-    public List<IbdpResultDto> deleteAllIbdpResult() {
-        List<IbdpResultDto> deletedIbdpResults = this.ibdpResultService.getAllIbdpResults();
+    public ResponseEntity<Map<String, String>> deleteAllIbdpResult() {
         this.ibdpResultService.deleteAllIbdpResult();
-        return deletedIbdpResults;
+        return ResponseEntity.ok(Map.of("message","Deleted All IBDP_Results Successfully"));
     }
     
     @PutMapping("/{studentName}")

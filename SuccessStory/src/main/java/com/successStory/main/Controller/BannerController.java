@@ -4,6 +4,7 @@ package com.successStory.main.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -37,8 +38,18 @@ public class BannerController {
 	}
 	
 	@DeleteMapping
-	public BannerDto deleteBanners() {
+	public ResponseEntity<String> deleteBanner() {
 	    BannerDto bannerDto = bannerService.deleteBanner(); // Replace with your service method
-	    return bannerDto;
-	}
+	    
+	    if(bannerDto != null) {
+	    	
+		    return ResponseEntity.ok("Banner Delete Successfully");
+	    }
+	    else {
+	    	return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Banner Not Found");	    
+	} 
+  }
 }
+
+
+
