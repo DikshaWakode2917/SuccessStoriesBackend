@@ -48,53 +48,52 @@ public class MYP_ResultsController {
 		return ResponseEntity.ok(this.myp_resultsService.getAllMYP_Results());
 	}
 	
+	@GetMapping("/{studentName}")
+	public ResponseEntity<?> findByStudentName(@PathVariable String studentName) {
+		try {
+			String decodedStudentName = URLDecoder.decode(studentName, StandardCharsets.UTF_8.toString());
+			
+			List<MYP_ResultsDto> myp_resultdsDtoList =this.myp_resultsService.findByStudentName(decodedStudentName);
+			
+			if (myp_resultdsDtoList != null && !myp_resultdsDtoList.isEmpty()) {
+				return ResponseEntity.ok(myp_resultdsDtoList);
+			}
+			else {
+				return ResponseEntity.notFound().build();
+			}
+		}
+		catch (UnsupportedEncodingException e) {
+			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error decoding URL parameter");
+		}
+	}
+	
 //	@GetMapping("/studentName")
 //	public ResponseEntity<?> findByStudentName(@PathVariable String studentName) {
-//		try {
-//			String decodedStudentName = URLDecoder.decode(studentName, StandardCharsets.UTF_8.toString());
-//			
-//			@SuppressWarnings("unchecked")
-//			List<MYP_ResultsDto> myp_resultdsDtoList = (List<MYP_ResultsDto>) this.findByStudentName(decodedStudentName);
-//			
-//			if (myp_resultdsDtoList != null && !myp_resultdsDtoList.isEmpty()) {
-//				return ResponseEntity.ok(myp_resultdsDtoList);
-//			}
-//			else {
-//				return ResponseEntity.notFound().build();
-//			}
-//		}
-//		catch (UnsupportedEncodingException e) {
-//			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error decoding URL parameter");
-//		}
+//	    try {
+//	        String decodedStudentName = URLDecoder.decode(studentName, StandardCharsets.UTF_8.toString());
+//	        
+//	        // You should call a service method here, not itself.
+//	        // Example: List<MYP_ResultsDto> myp_resultsDtoList = myp_resultsService.findByStudentName(decodedStudentName);
+//	        List<MYP_ResultsDto> myp_resultsDtoList = this.myp_resultsService.findByStudentName(decodedStudentName);
+//	        if (myp_resultsDtoList != null && !myp_resultsDtoList.isEmpty()) {
+//	            return ResponseEntity.ok(myp_resultsDtoList);
+//	        }
+//	        else {
+//	            return ResponseEntity.notFound().build();
+//	        }
+//	    }
+//	    catch (UnsupportedEncodingException e) {
+//	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error decoding URL parameter");
+//	    }
 //	}
-	
-	@GetMapping("/studentName")
-	public ResponseEntity<?> findByStudentName(@PathVariable String studentName) {
-	    try {
-	        String decodedStudentName = URLDecoder.decode(studentName, StandardCharsets.UTF_8.toString());
-	        
-	        // You should call a service method here, not itself.
-	        // Example: List<MYP_ResultsDto> myp_resultsDtoList = myp_resultsService.findByStudentName(decodedStudentName);
-	        List<MYP_ResultsDto> myp_resultsDtoList = this.myp_resultsService.findByStudentName(decodedStudentName);
-	        if (myp_resultsDtoList != null && !myp_resultsDtoList.isEmpty()) {
-	            return ResponseEntity.ok(myp_resultsDtoList);
-	        }
-	        else {
-	            return ResponseEntity.notFound().build();
-	        }
-	    }
-	    catch (UnsupportedEncodingException e) {
-	        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error decoding URL parameter");
-	    }
-	}
 
 	
 	@DeleteMapping()
-	public List<MYP_ResultsDto> deleteAllMYP_Results() {
+	public ResponseEntity<Map<String, String>> deleteAllMYP_Results() {
 		List<MYP_ResultsDto> deletedAllMYP_Results = this.myp_resultsService.getAllMYP_Results();
 		
 		this.myp_resultsService.deleteAllMYP_Results();
-		return deletedAllMYP_Results;
+		return ResponseEntity.ok(Map.of("message","Delete MYP_Results Successfully"));
 	}
 	
 	@DeleteMapping("/{studentName}")
