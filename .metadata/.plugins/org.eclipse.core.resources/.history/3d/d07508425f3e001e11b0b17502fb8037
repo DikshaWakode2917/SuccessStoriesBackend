@@ -1,5 +1,0 @@
-package com.successStory.main.Service;
-
-public interface BannerService {
-
-}

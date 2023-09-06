@@ -1,0 +1,70 @@
+package com.successStory.main.Service.Impl;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.successStory.main.Dto.IGCSE_ResultsDtoToEntity;
+import com.successStory.main.Entities.IGCSE_Results;
+import com.successStory.main.Payloads.IGCSE_ResultsDto;
+import com.successStory.main.Repositories.IGCSE_ResultsRepo;
+import com.successStory.main.Service.IGCSE_ResultsService;
+
+public class IGCSE_ResultsServiceImpl implements IGCSE_ResultsService{
+
+	private final IGCSE_ResultsRepo igcse_resultsRepo;
+	private final IGCSE_ResultsDtoToEntity igcse_resultsDtoToEntity;
+	
+	@Autowired
+	public IGCSE_ResultsServiceImpl(IGCSE_ResultsRepo igcse_resultsRepo, IGCSE_ResultsDtoToEntity igcse_resultsDtoToEntity) {
+		super();
+		this.igcse_resultsRepo = igcse_resultsRepo;
+		this.igcse_resultsDtoToEntity = igcse_resultsDtoToEntity;
+	}
+
+	@Override
+	public IGCSE_ResultsDto addIGCSE_Results(IGCSE_ResultsDto igcse_resultsDto) {
+		
+		IGCSE_Results igcse_Result = igcse_resultsDtoToEntity.dtoToIGCSEResult(igcse_ResultsDto);
+		igcse_Result = igcse_resultsRepo.save(igcse_Result);
+		igcse_ResultsDto = igcse_resultsDtoToEntity.igcseResultToDto(igcse_Result);
+		return igcse_ResultsDto;
+	}
+	
+//	@Override
+//	public List<IGCSE_ResultsDto> getAllIGCSE_Results() {
+//		List<IGCSE_Results> igcse_Results = this.igcse_resultsRepo.findAll();
+//		List<IGCSE_ResultsDto> igcse_ResultsDto = igcse_Results.stream().map(igcse_Results -> this.igcse_resultsDtoToEntity.igcseResultToDto(igcse_Results)).collect(Collectors.toList());
+//		return igcse_ResultsDto;
+//	}
+	
+	// Define an interface
+	public interface IGCSE_ResultsService {
+	    List<IGCSE_ResultsDto> getAllIGCSE_Results();
+	}
+
+	// Implement the interface in a class
+	    @Override
+	    public List<IGCSE_ResultsDto> getAllIGCSE_Results() {
+	        // Provide the actual implementation for this method
+	        // This method should return a list of IGCSE_ResultsDto
+	        // You can use the code you provided in your original question here
+	        return igcse_Results.stream()
+	            .map(igcse_Result -> igcse_resultsDtoToEntity.igcseResultToDto(igcse_Result))
+	            .collect(Collectors.toList());
+	    }
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+		
+	
+}

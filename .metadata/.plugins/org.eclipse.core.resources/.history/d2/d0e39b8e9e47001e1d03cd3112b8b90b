@@ -1,0 +1,53 @@
+package com.successStory.main.Controller;
+
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.successStory.main.Payloads.IGCSE_ResultsDto;
+import com.successStory.main.Repositories.IGCSE_ResultsRepo;
+import com.successStory.main.Service.IGCSE_ResultsService;
+
+@CrossOrigin
+@RestController
+@RequestMapping("/api/igcse_results")
+@Component
+public class IGCSE_ResultsController {
+
+	@Autowired
+	IGCSE_ResultsService igcse_resultsService;
+	 
+	@Autowired
+	IGCSE_ResultsRepo igcse_resultsRepo;
+	
+	@PostMapping
+	public ResponseEntity<IGCSE_ResultsDto> addIGCSE_Results(@RequestBody IGCSE_ResultsDto igcse_resultsDto) {
+		IGCSE_ResultsDto addIGCSE_Result = this.igcse_resultsService.addIGCSE_Results(igcse_resultsDto);
+		return ResponseEntity.ok(addIGCSE_Result);
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<IGCSE_ResultsDto>> getAllIGCSE_Results() {
+		return ResponseEntity.ok(this.igcse_resultsService.getAllIGCSE_Results());
+	}
+	
+	@GetMapping("/student_name")
+	public ResponseEntity<?> findStudentByStudentName(@PathVariable String student_Name) {
+		try {
+			String decodedStudentName = URLDecoder.decode(student_Name,StandardCharsets.UTF_8.toString());
+			
+			List<IGCSE_ResultsDto> igcse_resultsDtoList = this.igcse_resultsService.findByStudentName(decodedStudentName);
+		}
+	}
+}
