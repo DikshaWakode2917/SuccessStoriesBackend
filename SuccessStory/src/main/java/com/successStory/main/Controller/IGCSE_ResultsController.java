@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.successStory.main.Payloads.IGCSE_ResultsDto;
-import com.successStory.main.Repositories.IGCSE_ResultsRepo;
 import com.successStory.main.Service.IGCSE_ResultsService;
 
 @CrossOrigin
@@ -32,11 +31,8 @@ import com.successStory.main.Service.IGCSE_ResultsService;
 public class IGCSE_ResultsController {
 
 	@Autowired
-	IGCSE_ResultsService igcse_resultsService;
+	private IGCSE_ResultsService igcse_resultsService;
 	 
-	@Autowired
-	IGCSE_ResultsRepo igcse_resultsRepo;
-	
 	@PostMapping
 	public ResponseEntity<IGCSE_ResultsDto> addIGCSE_Results(@RequestBody IGCSE_ResultsDto igcse_resultsDto) {
 		IGCSE_ResultsDto addIGCSE_Result = this.igcse_resultsService.addIGCSE_Results(igcse_resultsDto);

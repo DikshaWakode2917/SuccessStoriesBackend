@@ -2,9 +2,12 @@ package com.successStory.main.Service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.successStory.main.Entities.IGCSE_Results;
 import com.successStory.main.Payloads.IGCSE_ResultsDto;
 
+@Service
 public interface IGCSE_ResultsService {
 
 	IGCSE_ResultsDto addIGCSE_Results(IGCSE_ResultsDto igcse_resultsDto);
