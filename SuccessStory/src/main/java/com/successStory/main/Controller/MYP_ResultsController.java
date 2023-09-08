@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.successStory.main.Payloads.MYP_ResultsDto;
 import com.successStory.main.Repositories.MYP_ResultsRepo;
 import com.successStory.main.Service.MYP_ResultsService;
+import com.successStory.main.Service.Impl.ResourceNotFoundException;
 
 @CrossOrigin
 @RestController
@@ -111,7 +112,7 @@ public class MYP_ResultsController {
 	@PutMapping("/{studentName}")
 	public ResponseEntity<MYP_ResultsDto> updateMYP_Result(
 			@PathVariable String studentName,
-			@RequestBody MYP_ResultsDto myp_resultDto) {
+			@RequestBody MYP_ResultsDto myp_resultDto) throws ResourceNotFoundException {
 			
 		MYP_ResultsDto updatedMYP_Result = (MYP_ResultsDto) this.myp_resultsService.updateMYP_Results(myp_resultDto, studentName);
 		
