@@ -14,7 +14,7 @@ public class IGCSE_ResultsDtoToEntity {
 		igcseResult.setStudent_School(igcseResultDto.getStudent_School());
 		igcseResult.setYear(igcseResultDto.getYear());
 		igcseResult.setExtented(igcseResultDto.getExtented());
-		igcseResult.setAdditional(igcseResult.getAdditional());
+		igcseResult.setAdditional(igcseResultDto.getAdditional());
 		igcseResult.setInternational(igcseResultDto.getInternational());
 		igcseResult.setStatus(igcseResultDto.isStatus());
 		

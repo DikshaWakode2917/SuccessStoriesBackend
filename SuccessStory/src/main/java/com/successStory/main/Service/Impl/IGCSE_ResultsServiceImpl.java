@@ -45,7 +45,7 @@ public class IGCSE_ResultsServiceImpl implements IGCSE_ResultsService{
 	
 	@Override
 	public List<IGCSE_ResultsDto> findResultsByStudentName(String studentName){
-		List<IGCSE_Results> igcse_results = this.igcse_resultsRepo.findByStudentName(studentName);
+		Optional<IGCSE_Results> igcse_results = this.igcse_resultsRepo.findByStudentName(studentName);
 		List<IGCSE_ResultsDto> igcse_resultsDto = igcse_results.stream().map(results -> this.igcse_resultsDtoToEntity.igcseResultToDto(results)).collect(Collectors.toList());
 		return igcse_resultsDto;
 	}
@@ -61,7 +61,7 @@ public class IGCSE_ResultsServiceImpl implements IGCSE_ResultsService{
 	
 	@Override
 	public boolean deleteSingleIGCSE_Results(String studentName) {
-		List<IGCSE_Results> igcse_resultsToDelete = this.igcse_resultsRepo.findByStudentName(studentName);
+		Optional<IGCSE_Results> igcse_resultsToDelete = this.igcse_resultsRepo.findByStudentName(studentName);
 		
 		if (!igcse_resultsToDelete.isEmpty()) {
 			this.igcse_resultsRepo.deleteByStudentName(studentName);
@@ -73,16 +73,16 @@ public class IGCSE_ResultsServiceImpl implements IGCSE_ResultsService{
 	}
 		
 	@Override
-	public List<IGCSE_Results> updateIGCSE_Results(IGCSE_ResultsDto igcse_resultsDto, String studentName) throws ResourceNotFoundException {
+	public IGCSE_ResultsDto updateIGCSE_Results(IGCSE_ResultsDto igcse_resultsDto, String studentName) throws ResourceNotFoundException {
 		
-		List<IGCSE_Results> igcse_results = this.igcse_resultsRepo.findByStudentName(studentName);
-		if(igcse_results.isEmpty()) {
-			throw new ResourceNotFoundException("IGCSE_Results","student_Name",studentName);
-		}
-		else{
+		Optional<IGCSE_Results> igcse_results = this.igcse_resultsRepo.findByStudentName(studentName);
+		
+		if(igcse_results.isPresent()) {
 			
-			for(IGCSE_Results igcse_resultsToUpdate : igcse_results) {
-				igcse_resultsToUpdate.setStudentName(igcse_resultsDto.getStudentName());
+		
+			IGCSE_Results igcse_resultsToUpdate = igcse_results.get();
+		
+ 				igcse_resultsToUpdate.setStudentName(igcse_resultsDto.getStudentName());
 				igcse_resultsToUpdate.setStudent_School(igcse_resultsDto.getStudent_School());
 				igcse_resultsToUpdate.setYear(igcse_resultsDto.getYear());
 				igcse_resultsToUpdate.setExtented(igcse_resultsDto.getExtented());
@@ -91,24 +91,17 @@ public class IGCSE_ResultsServiceImpl implements IGCSE_ResultsService{
 				igcse_resultsToUpdate.setStatus(igcse_resultsDto.isStatus());
 				
 				this.igcse_resultsRepo.save(igcse_resultsToUpdate)	;
-
+				
+				return igcse_resultsDtoToEntity.igcseResultToDto(igcse_resultsToUpdate);
 		
 			}
+			
+			else {
+				String errorMessage = "IGCSE_Results with studentName " + studentName + " is not available" ;
+				
+				throw new ResourceNotFoundException(errorMessage);
+			}
 		}
-	return  igcse_results;
 	}
 
 	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-		
-	
-}
