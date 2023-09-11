@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.courses.backend.exceptions.ResourceNotFoundException;
 import com.successStory.main.Dto.IGCSE_ResultsDtoToEntity;
 import com.successStory.main.Entities.IGCSE_Results;
 import com.successStory.main.Payloads.IGCSE_ResultsDto;
@@ -73,7 +72,7 @@ public class IGCSE_ResultsServiceImpl implements IGCSE_ResultsService{
 	}
 		
 	@Override
-	public List<IGCSE_Results> updateIGCSE_Results(IGCSE_ResultsDto igcse_resultsDto, String studentName) {
+	public List<IGCSE_Results> updateIGCSE_Results(IGCSE_ResultsDto igcse_resultsDto, String studentName) throws ResourceNotFoundException {
 		
 		List<IGCSE_Results> igcse_results = this.igcse_resultsRepo.findByStudentName(studentName);
 		if(igcse_results.isEmpty()) {

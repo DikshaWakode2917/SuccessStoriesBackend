@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.courses.backend.exceptions.ResourceNotFoundException;
 import com.successStory.main.Dto.IbdpResultDtoToEntity;
 import com.successStory.main.Entities.IbdpResult;
 import com.successStory.main.Payloads.IbdpResultDto;
@@ -173,7 +172,7 @@ public class IbdpResultServiceImpl implements IbdpResultService {
 
     
   @Override
-  public IbdpResultDto updateIbdpResult(IbdpResultDto ibdpResultDto, String studentName) {
+  public IbdpResultDto updateIbdpResult(IbdpResultDto ibdpResultDto, String studentName) throws ResourceNotFoundException {
       // Find the IbdpResult entity by studentName
       Optional<IbdpResult> ibdpResultOptional = this.ibdpResultRepo.findByStudentName(studentName);
 

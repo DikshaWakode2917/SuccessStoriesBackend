@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.successStory.main.Payloads.IGCSE_ResultsDto;
 import com.successStory.main.Service.IGCSE_ResultsService;
+import com.successStory.main.Service.Impl.ResourceNotFoundException;
 
 @CrossOrigin
 @RestController
@@ -103,7 +104,7 @@ public class IGCSE_ResultsController {
 	@PutMapping("/{StudentName}")
 	public ResponseEntity<IGCSE_ResultsDto> updateIGCSE_Results(
 			@PathVariable String studentName,
-			@RequestBody IGCSE_ResultsDto igcse_resultsDto) {
+			@RequestBody IGCSE_ResultsDto igcse_resultsDto) throws ResourceNotFoundException {
 		IGCSE_ResultsDto updatedIGCSE_Results = (IGCSE_ResultsDto) this.igcse_resultsService.updateIGCSE_Results(igcse_resultsDto, studentName);
 		
 		if(updatedIGCSE_Results != null) {

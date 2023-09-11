@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.courses.backend.exceptions.ResourceNotFoundException;
 import com.successStory.main.Dto.MYP_ResultsDtoToEntity;
 import com.successStory.main.Entities.MYP_Results;
 import com.successStory.main.Payloads.MYP_ResultsDto;
@@ -81,7 +80,7 @@ public boolean deleteSingleMYP_Result(String studentName) {
 }
 	
 	@Override
-	public 	MYP_ResultsDto updateMYP_Results(MYP_ResultsDto myp_resultsDto, String studentName) {
+	public 	MYP_ResultsDto updateMYP_Results(MYP_ResultsDto myp_resultsDto, String studentName) throws ResourceNotFoundException {
 		
 		Optional<MYP_Results> myp_resultsOptional = this.myp_resultsRepo.findByStudentName(studentName);
 		

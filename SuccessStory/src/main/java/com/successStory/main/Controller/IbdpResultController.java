@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import com.successStory.main.Payloads.IbdpResultDto;
 import com.successStory.main.Service.IbdpResultService;
+import com.successStory.main.Service.Impl.ResourceNotFoundException;
 
 @CrossOrigin
 @RestController
@@ -83,7 +84,7 @@ public class IbdpResultController {
     @PutMapping("/{studentName}")
     public ResponseEntity<IbdpResultDto> updateIbdpResult(
             @PathVariable String studentName,
-            @RequestBody IbdpResultDto ibdpResultDto) {
+            @RequestBody IbdpResultDto ibdpResultDto) throws ResourceNotFoundException {
 
         // Call the service to update the IbdpResult
         IbdpResultDto updatedIbdpResult = ibdpResultService.updateIbdpResult(ibdpResultDto, studentName);
