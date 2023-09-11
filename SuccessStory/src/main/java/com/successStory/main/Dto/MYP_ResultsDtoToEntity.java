@@ -29,7 +29,7 @@ public class MYP_ResultsDtoToEntity {
 		myp_resultsDto.setStudentName(myp_results.getStudentName());
 		myp_resultsDto.setSchool_Name(myp_results.getSchool_Name());
 		myp_resultsDto.setYear(myp_results.getYear());
-		myp_resultsDto.setYear(myp_results.getYear());
+		myp_resultsDto.setLevels(myp_results.getLevels());
 		myp_resultsDto.setScore1(myp_results.getScore1());
 		myp_resultsDto.setStatus(myp_results.isStatus());
 		
