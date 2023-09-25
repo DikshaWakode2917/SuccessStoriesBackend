@@ -26,11 +26,14 @@ public class IbdpResult {
 
 	private String IA_Score;
 	private boolean Status;
+    
 	
 	public IbdpResult() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
 
 	public IbdpResult(int student_id, String studentName, String school_Name, int year, String level, String score,
 			String iA_Score, boolean status) {
@@ -44,6 +47,8 @@ public class IbdpResult {
 		IA_Score = iA_Score;
 		Status = status;
 	}
+
+
 
 	public int getStudent_id() {
 		return Student_id;
@@ -108,6 +113,7 @@ public class IbdpResult {
 	public void setStatus(boolean status) {
 		Status = status;
 	}
-		
+
+	
 	
 }

@@ -51,6 +51,45 @@ public class IbdpResultServiceImpl implements IbdpResultService {
                 .collect(Collectors.toList());
     	return ibdpResultDto;
     }
+    
+    @Override
+    public IbdpResultDto patchIbdpResult(IbdpResultDto ibdpResultDto, String studentName) throws ResourceNotFoundException {
+        Optional<IbdpResult> ibdpResultOptional = this.ibdpResultRepo.findByStudentName(studentName);
+        
+        if (ibdpResultOptional.isPresent()) {
+            IbdpResult updatedResult = ibdpResultOptional.get();
+            
+            // Update fields if they are not null in the DTO
+            if (ibdpResultDto.getStudentName() != null) {
+                updatedResult.setStudentName(ibdpResultDto.getStudentName());
+            }
+            if (ibdpResultDto.getSchool_Name() != null) {
+                updatedResult.setSchool_Name(ibdpResultDto.getSchool_Name());
+            }
+            if (ibdpResultDto.getLevel() != null) {
+                updatedResult.setLevel(ibdpResultDto.getLevel());
+            }
+            if (ibdpResultDto.getScore() != null) {
+                updatedResult.setScore(ibdpResultDto.getScore());
+            }
+            // Assuming `status` is a boolean field
+            updatedResult.setStatus(ibdpResultDto.isStatus());
+            
+            // Save the updated entity
+            this.ibdpResultRepo.save(updatedResult);
+            
+            // Convert the updated entity to DTO and return it
+            return ibdpResultDtoToEntity.ibpdResultToDto(updatedResult);
+        } else {
+            // Handle the case when no matching entity is found
+            // You can return a message or throw an exception, depending on your application's requirements
+            String errorMessage = "IbdpResult with studentName '" + studentName + "' not available";
+            // You can also create a custom exception class and throw it here if needed
+            throw new ResourceNotFoundException(errorMessage);
+        }
+    }
+
+
 
     @Override
     public boolean deleteAllIbdpResult(){
@@ -171,6 +210,7 @@ public class IbdpResultServiceImpl implements IbdpResultService {
 //    }
 
     
+    
   @Override
   public IbdpResultDto updateIbdpResult(IbdpResultDto ibdpResultDto, String studentName) throws ResourceNotFoundException {
       // Find the IbdpResult entity by studentName
@@ -201,4 +241,6 @@ public class IbdpResultServiceImpl implements IbdpResultService {
           throw new ResourceNotFoundException(errorMessage);
       }
    }
+  
+  
 }

@@ -22,10 +22,33 @@ public class BannerServiceImpl implements BannerService {
 	
 	@Override
 	public BannerDto addBanner(BannerDto bannerDto) {
-		Banner banner = bannerDtoToEntity.dtoToBanner(bannerDto);
-		banner = this.bannerRepo.save(banner);
+		Banner bannerEntity = new Banner();
+		List<Banner> banners = this.bannerRepo.findAll();
 		
-		return this.bannerDtoToEntity.bannerToDto(banner);
+		if (banners.isEmpty()) {
+			bannerEntity = bannerDtoToEntity.dtoToBanner(bannerDto);
+		} else {
+			bannerEntity = banners.get(0);
+			if (bannerDto.getBanner_heading() != null) {
+				bannerEntity.setBanner_heading(bannerDto.getBanner_heading());
+			}
+			if (bannerDto.getBanner_text() != null) {
+				bannerEntity.setBanner_text(bannerDto.getBanner_text());
+			}
+			if (bannerDto.getButton_text() != null) {
+				bannerEntity.setButton_text(bannerDto.getButton_text());
+			}
+			if (bannerDto.getButton_url() != null) {
+				bannerEntity.setButton_url(bannerDto.getButton_url());
+			}
+			if (bannerDto.isStatus()) {
+				bannerEntity.setStatus(bannerDto.isStatus());
+			}
+		}
+		
+		bannerEntity = this.bannerRepo.save(bannerEntity);
+		
+		return this.bannerDtoToEntity.bannerToDto(bannerEntity);
 	}
 	
 	@Override

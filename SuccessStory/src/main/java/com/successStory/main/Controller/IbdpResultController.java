@@ -5,7 +5,6 @@ import java.net.URLDecoder;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +14,7 @@ import com.successStory.main.Payloads.IbdpResultDto;
 import com.successStory.main.Service.IbdpResultService;
 import com.successStory.main.Service.Impl.ResourceNotFoundException;
 
-@CrossOrigin
+@CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/api/ibdpResults")
 @Component
@@ -50,19 +49,11 @@ public class IbdpResultController {
                 return ResponseEntity.notFound().build();
             }
         } catch (UnsupportedEncodingException e) {
-            // Handle the exception (e.g., log an error, return an error response)
-            //return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error decoding URL parameter");
+            
         	return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error decoding URL parameter");
         }
     }
    
-
-//    @PutMapping("/{student_Name}")
-//    public ResponseEntity<IbdpResultDto> updateIbdpResult(@RequestBody IbdpResultDto ibdpResultDto, @PathVariable("student_Name") String student_Name) {
-//        IbdpResultDto updatedIbdpResult = this.ibdpResultService.updateIbdpResult(ibdpResultDto, student_Name);
-//        return ResponseEntity.ok(updatedIbdpResult);
-//    }
-//    
 
     @DeleteMapping("/{studentName}")
     public ResponseEntity<?> deleteIbdpResult(@PathVariable String studentName) {
@@ -97,4 +88,21 @@ public class IbdpResultController {
             return ResponseEntity.notFound().build();
         }
     }
+    @PatchMapping("/{studentName}")
+    public ResponseEntity<IbdpResultDto> patchIBDPResult(
+            @PathVariable String studentName,
+            @RequestBody IbdpResultDto ibdpResultDto) throws ResourceNotFoundException {
+
+        // Call the service to update the IbdpResult
+        IbdpResultDto updatedIbdpResult = ibdpResultService.patchIbdpResult(ibdpResultDto, studentName);
+
+        // Check if the update was successful
+        if (updatedIbdpResult != null) {
+            return ResponseEntity.ok(updatedIbdpResult);
+        } else {
+            // Return an error response if the update failed
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
+

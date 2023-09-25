@@ -38,6 +38,8 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="E:\Education_Planet\Education_Planet\Success_Stories_Backend\SuccessStoriesBackend"/>
+			<item value="D:\Diksha\Education_Planet\Success_Stories_Backend\SuccessStoriesBackend"/>
 			<item value="E:\Education_Planet\Backend\Courses_Backend_Project"/>
 			<item value="E:\Final_Project\FinalMainProject\SportVenueBooking\LetsPlay"/>
 			<item value="E:\Final_Project\Extract\shrikant project\shrikant project\LetsPlay"/>

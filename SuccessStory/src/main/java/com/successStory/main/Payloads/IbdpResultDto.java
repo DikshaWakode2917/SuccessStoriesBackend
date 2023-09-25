@@ -12,6 +12,7 @@ public class IbdpResultDto {
 	private String Score;
 	private String IA_Score;
 	private boolean Status;
+	
 	public IbdpResultDto() {
 		super();
 	}
@@ -25,6 +26,7 @@ public class IbdpResultDto {
 		Score = score;
 		IA_Score = iA_Score;
 		Status = status;
+
 	}
 	public String getStudentName() {
 		return StudentName;
@@ -68,6 +70,5 @@ public class IbdpResultDto {
 	public void setStatus(boolean status) {
 		Status = status;
 	}
-	
 		
 }
